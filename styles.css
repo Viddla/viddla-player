@@ -236,7 +236,7 @@ video {
   display: none;
 }
 
-.thumbnail-img {
+.vidposter-img {
   position: absolute; /* OBSELETE */
   top: 0;
   left: 0;
@@ -247,7 +247,7 @@ video {
   display: none;
 }
 
-.video-container.scrubbing .thumbnail-img {
+.video-container.scrubbing .vidposter-img {
   display: block;
 }
 
@@ -303,3 +303,17 @@ video {
     transform: rotate(360deg);
   }
 }
+
+/* watermark */
+.watermark {
+position: absolute;
+height: 34px;
+z-index: 10;
+right: 20px;
+top: 20px;
+opacity: 0.6;
+}
+.watermark:hover {
+opacity: 1;
+}
+.watermark img{right: 0;height: 34px;cursor: pointer;box-shadow: none !important;}

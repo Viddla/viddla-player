@@ -12,6 +12,7 @@ const volumeSlider = document.querySelector(".volume-slider")
 const videoContainer = document.querySelector(".video-container")
 const timelineContainer = document.querySelector(".timeline-container")
 const video = document.querySelector(".vlplay")
+const vidposterImg = document.querySelector(".vidposter-img")
 const watermarkImg = document.querySelector(".watermark")
 const langtrack = document.querySelector(".langtrack-btn")
 const restrack = document.querySelector(".restrack-btn")
@@ -183,9 +184,11 @@ function createClickListener(label, src) {
 function newresSRC(nnlabel, nnsrc) {
   console.log("Playing " + nnlabel + " " + nnsrc + "DBG : "+video.currentTime+" <- curr time | duration -> "+video.duration);
   const  previousTime = video.currentTime;
+  const  previousPBR = video.playbackRate;
   console.log(previousTime);
   video.src = nnsrc;
   video.currentTime = previousTime;
+  video.playbackRate = previousPBR;
   console.log(video.currentTime);
   video.play();
   restrack.textContent = `${nnlabel}`;
@@ -346,6 +349,9 @@ video.addEventListener("pause", () => {
 const loader = document.querySelector('.loader');
 video.addEventListener('waiting', showLoader);
 video.addEventListener('canplay', hideLoader);
+video.addEventListener('playing', hideLoader);
+video.addEventListener('loadeddata', hideLoader);
+video.addEventListener('loadedmetadata', hideLoader);
 
 try {
   video.addEventListener('loadeddata', () => {
@@ -358,11 +364,13 @@ try {
   // ...
 }
 
-
+vidposterImg.src = video.poster;
 function showLoader() {
   loader.style.display = 'inherit';
+  vidposterImg.style.display = 'inherit';
 }
 
 function hideLoader() {
   loader.style.display = 'none';
+  vidposterImg.style.display = 'none';
 }
