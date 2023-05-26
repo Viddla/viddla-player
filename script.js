@@ -170,9 +170,12 @@ for (let i = 0; i < sourceElements.length; i++) {
   // Add a click event listener to change video resolution
   button.addEventListener('click', function() {
 	console.log("Playing "+source.getAttribute('label')+" "+source.getAttribute('src'));
-	previousTime = video.currentTime;
+	//previousTime = 0;  // WEIRDLY BUGGY
+	const previousTime = video.currentTime;
+	console.log(previousTime);
     video.src = source.getAttribute('src');
 	video.currentTime = previousTime;
+	console.log(video.currentTime);
 	video.play()
 	restrack.textContent = `${label}`;
   });
@@ -188,7 +191,7 @@ function changeVidResolution(event) {
 console.log(video.currentSrc);
 console.log(video.src); //sets src but starts playback from zero
 
-let previousTime = 0;
+previousTime = 0;
 previousTime = video.currentTime;
 video.src="assets/preview.mp4";
 video.currentTime = previousTime;
@@ -330,3 +333,29 @@ video.addEventListener("play", () => {
 video.addEventListener("pause", () => {
   videoContainer.classList.add("paused")
 })
+
+
+// Buffering / Loading
+const loader = document.querySelector('.loader');
+video.addEventListener('waiting', showLoader);
+video.addEventListener('canplay', hideLoader);
+
+try {
+  video.addEventListener('loadedmetadata', () => {
+    totalTimeElem.textContent = formatDuration(video.duration);
+  });
+} catch (e) {
+  // Handle error or fallback behavior
+  console.error('Error occurred while adding event listener:', e);
+  // Fallback code or alternative approach
+  // ...
+}
+
+
+function showLoader() {
+  loader.style.display = 'inherit';
+}
+
+function hideLoader() {
+  loader.style.display = 'none';
+}
