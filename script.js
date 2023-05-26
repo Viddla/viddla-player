@@ -154,7 +154,7 @@ function getCurrentSource() {
 const sourceElements = video.querySelectorAll('source');
 
 if (sourceElements.length <= 1) {
-  restrack.style.display = 'none';
+  restrack.style.display = 'none'; // there is nothing to change
 }
 
 const videoSourcesContainer = document.getElementById('videosources');
@@ -168,20 +168,27 @@ for (let i = 0; i < sourceElements.length; i++) {
   button.textContent = label;
   
   // Add a click event listener to change video resolution
-  button.addEventListener('click', function() {
-	console.log("Playing "+source.getAttribute('label')+" "+source.getAttribute('src'));
-	//previousTime = 0;  // WEIRDLY BUGGY
-	const previousTime = video.currentTime;
-	console.log(previousTime);
-    video.src = source.getAttribute('src');
-	video.currentTime = previousTime;
-	console.log(video.currentTime);
-	video.play()
-	restrack.textContent = `${label}`;
-  });
+  button.addEventListener('click', createClickListener(label, source.getAttribute('src')));
   
   // Append the button to the video sources container
   videoSourcesContainer.appendChild(button);
+}
+
+function createClickListener(label, src) {
+  return function() {
+    newresSRC(label, src);
+  };
+}
+
+function newresSRC(nnlabel, nnsrc) {
+  console.log("Playing " + nnlabel + " " + nnsrc + "DBG : "+video.currentTime+" <- curr time | duration -> "+video.duration);
+  const  previousTime = video.currentTime;
+  console.log(previousTime);
+  video.src = nnsrc;
+  video.currentTime = previousTime;
+  console.log(video.currentTime);
+  video.play();
+  restrack.textContent = `${nnlabel}`;
 }
 
 restrack.addEventListener("click", changeVidResolution);
@@ -341,7 +348,7 @@ video.addEventListener('waiting', showLoader);
 video.addEventListener('canplay', hideLoader);
 
 try {
-  video.addEventListener('loadedmetadata', () => {
+  video.addEventListener('loadeddata', () => {
     totalTimeElem.textContent = formatDuration(video.duration);
   });
 } catch (e) {
