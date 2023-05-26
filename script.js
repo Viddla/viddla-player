@@ -43,9 +43,11 @@ document.addEventListener("keydown", e => {
       toggleMute()
       break
 	case ",":
+	video.pause()
       skip(-0.05)
       break
 	case ".":
+	video.pause()
       skip(0.05)
       break
     case "arrowleft":
@@ -95,7 +97,7 @@ function handleTimelineUpdate(e) {
   const percent = Math.min(Math.max(0, e.x - rect.x), rect.width) / rect.width;
   const time = percent * video.duration;
 
-  previewImg.currentTime = time;
+  previewImg.currentTime = time; // Set preview thumbnail (part of scrubber) video time
   //console.log(time);
   timelineContainer.style.setProperty("--preview-position", percent);
 
@@ -103,7 +105,7 @@ function handleTimelineUpdate(e) {
 	//console.log(time);
     e.preventDefault();
     timelineContainer.style.setProperty("--progress-position", percent);
-    previewImg.currentTime = time; // Set the video's current time based on the scrubber position
+    video.currentTime = time; // Set the video's current time based on the scrubber position
   }
 }
 
