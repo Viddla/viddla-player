@@ -237,7 +237,7 @@ video {
 }
 
 .thumbnail-img {
-  position: absolute;
+  position: absolute; /* OBSELETE */
   top: 0;
   left: 0;
   right: 0;

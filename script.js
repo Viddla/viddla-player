@@ -8,11 +8,11 @@ const speedBtn = document.querySelector(".speed-btn")
 const currentTimeElem = document.querySelector(".current-time")
 const totalTimeElem = document.querySelector(".total-time")
 const previewImg = document.querySelector(".preview-thumb")
-const thumbnailImg = document.querySelector(".thumbnail-img")
 const volumeSlider = document.querySelector(".volume-slider")
 const videoContainer = document.querySelector(".video-container")
 const timelineContainer = document.querySelector(".timeline-container")
 const video = document.querySelector(".vlplay")
+const watermarkImg = document.querySelector(".watermark")
 const langtrack = document.querySelector(".langtrack-btn")
 const restrack = document.querySelector(".restrack-btn")
 
@@ -155,6 +155,30 @@ const sourceElements = video.querySelectorAll('source');
 
 if (sourceElements.length <= 1) {
   restrack.style.display = 'none';
+}
+
+const videoSourcesContainer = document.getElementById('videosources');
+
+for (let i = 0; i < sourceElements.length; i++) {
+  const source = sourceElements[i];
+  const label = source.getAttribute('label');
+  
+  // Create a button element
+  const button = document.createElement('button');
+  button.textContent = label;
+  
+  // Add a click event listener to change video resolution
+  button.addEventListener('click', function() {
+	console.log("Playing "+source.getAttribute('label')+" "+source.getAttribute('src'));
+	previousTime = video.currentTime;
+    video.src = source.getAttribute('src');
+	video.currentTime = previousTime;
+	video.play()
+	restrack.textContent = `${label}`;
+  });
+  
+  // Append the button to the video sources container
+  videoSourcesContainer.appendChild(button);
 }
 
 restrack.addEventListener("click", changeVidResolution);
