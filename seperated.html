@@ -9,12 +9,13 @@
   </style>
 </head>
 <body>
-  <video class="vlplay" poster="assets/poster.avif">
+  <video controls muted class="vlplay" poster="assets/poster.avif">
     <source src="assets/hatav1-720.mp4" type='video/mp4' label='144p' res='144' />
 	<audio src="assets/test.mp3" type='audio/mp3' srclang="en" />
   </video>
 
   <button onclick="playVideoAndAudio()">Play</button>
+  <button onclick="pauseVA()">Pause</button>
   
   <script>
     var video = document.querySelector('.vlplay');
@@ -25,7 +26,7 @@
     audio.controls = true;*/
     //audio.style.display = 'none';
 
-    video.parentNode.insertBefore(audio, video.nextSibling);
+    //video.parentNode.insertBefore(audio, video.nextSibling);
 
 const sourceElements = video.querySelectorAll('audio');
 
@@ -37,19 +38,35 @@ console.log("err");
   </script>
   
     <script>
+    video = document.querySelector('.vlplay');
+    audio = document.querySelector('audio');
+	
+	video.load();
+	audio.load();
+	
     function playVideoAndAudio() {
-      var video = document.querySelector('.vlplay');
-      var audio = document.querySelector('audio');
-      
-	  
-	  video.addEventListener('seeked', function() {
-    audio.currentTime = video.currentTime;
-	console.log(audio.currentTime);
-  });
   
       video.play();
       audio.play();
+	  
+		video.currentTime = 0;
+		audio.currentTime = 0;
     }
+	
+	video.addEventListener('seeked', function() {
+    audio.currentTime = video.currentTime;
+	console.log(audio.currentTime);
+  });
+
+	video.addEventListener('play', function() {
+    audio.currentTime = video.currentTime;
+	console.log(audio.currentTime);
+  });
+
+   function pauseVA() {
+      video.pause();
+      audio.pause();
+  };
   </script>
   
 </body>
