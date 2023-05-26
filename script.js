@@ -368,8 +368,8 @@ video.addEventListener("pause", () => {
 // Buffering / Loading
 const loader = document.querySelector('.loader');
 video.addEventListener('waiting', showLoader);
-video.addEventListener('progress', showLoader);
-video.addEventListener('stalled', showLoader);
+video.addEventListener('progress', hideLoader);//
+video.addEventListener('stalled', hideLoader);//
 video.addEventListener('canplay', hideLoader);
 video.addEventListener('suspend', hideLoader);
 video.addEventListener('playing', hideLoader);
