@@ -183,6 +183,7 @@ function createClickListener(label, src) {
 }
 
 function newresSRC(nnlabel, nnsrc) {
+	showLoader();
   console.log("Playing " + nnlabel + " " + nnsrc + "DBG : "+video.currentTime+" <- curr time | duration -> "+video.duration);
   const  previousTime = video.currentTime;
   const  previousPBR = video.playbackRate;
