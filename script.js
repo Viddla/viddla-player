@@ -138,9 +138,37 @@ function changePlaybackSpeed(event) {
 }
 
 // Resolution
+function getCurrentSource() {
+  // Iterate through each source element
+  for (let i = 0; i < sourceElements.length; i++) {
+    const source = sourceElements[i];
+
+    // Check if the source matches the current video source
+    if (video.currentSrc.endsWith(source.getAttribute('src'))) {
+      return source;
+    }
+  }
+  return null; // No matching source found
+}
+
+const sourceElements = video.querySelectorAll('source');
+
+if (sourceElements.length <= 1) {
+  restrack.style.display = 'none';
+}
+
 restrack.addEventListener("click", changeVidResolution);
 function changeVidResolution(event) {
   event.preventDefault(); // no context menu
+
+console.log(video.currentSrc);
+console.log(video.src); //sets src but starts playback from zero
+
+let previousTime = 0;
+previousTime = video.currentTime;
+video.src="assets/preview.mp4";
+video.currentTime = previousTime;
+video.play()
 
   let newResTrack;
 
