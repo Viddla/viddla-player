@@ -42,6 +42,12 @@ document.addEventListener("keydown", e => {
     case "m":
       toggleMute()
       break
+	case ",":
+      skip(-0.05)
+      break
+	case ".":
+      skip(0.05)
+      break
     case "arrowleft":
     case "j":
       skip(-5)

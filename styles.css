@@ -1,3 +1,16 @@
+/* themable */
+
+.volume-slider {
+  /*accent-color: red;*/
+  accent-color: red;
+}
+
+.duration-container {
+  font-family: monospace, 'Times New Roman', Times, serif ;
+}
+
+
+
 *, *::before, *::after {
   box-sizing: border-box;
 }
