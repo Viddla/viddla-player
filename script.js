@@ -16,9 +16,6 @@ const video = document.querySelector(".vlplay")
 const langtrack = document.querySelector(".langtrack-btn")
 const restrack = document.querySelector(".restrack-btn")
 
-const previewImgSrc = `assets/hatav1-1080.mp4`
-previewImg.src = previewImgSrc
-
 document.addEventListener("keydown", e => {
   const tagName = document.activeElement.tagName.toLowerCase()
 
@@ -138,6 +135,9 @@ function changePlaybackSpeed(event) {
 }
 
 // Resolution
+const previewImgSrc = `assets/preview.mp4`  //TODO: go through all <sources> and figure out smallest res if possible
+previewImg.src = previewImgSrc
+
 function getCurrentSource() {
   // Iterate through each source element
   for (let i = 0; i < sourceElements.length; i++) {
