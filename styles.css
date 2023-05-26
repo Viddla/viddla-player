@@ -318,6 +318,31 @@ opacity: 1;
 }
 .watermark img{right: 0;height: 34px;cursor: pointer;box-shadow: none !important;}
 
+.share-btn {
+  top:61px;
+  right: 15px;
+  display: inline-block;
+  padding: 0;
+  background-color: rgba(100, 100, 100, 0.4);
+  color: #fff;
+  text-align: left;
+  font-size: 18px;
+  outline: none;
+  text-decoration: none;
+  border-radius: 50px;
+  width: 60px;
+  height: 35px;
+  line-height: 37px;
+  text-align: center;
+  font-weight: bold; }
+
+.share-btn:hover {
+  text-decoration: none;
+  background: linear-gradient(to left, #9f2af8, #f82a53);
+  color: #fff; }
+
+.share-btn:active {
+  opacity: .8; }
 
 
 
