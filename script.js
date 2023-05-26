@@ -16,6 +16,7 @@ const vidposterImg = document.querySelector(".vidposter-img")
 const watermarkImg = document.querySelector(".watermark")
 const langtrack = document.querySelector(".langtrack-btn")
 const restrack = document.querySelector(".restrack-btn")
+const restrackauto = document.querySelector(".restrack-auto")
 
 document.addEventListener("keydown", e => {
   const tagName = document.activeElement.tagName.toLowerCase()
@@ -194,8 +195,8 @@ function newresSRC(nnlabel, nnsrc) {
   restrack.textContent = `${nnlabel}`;
 }
 
-restrack.addEventListener("click", changeVidResolution);
-function changeVidResolution(event) {
+restrackauto.addEventListener("click", changeVidResolutionAuto);
+function changeVidResolutionAuto(event) {
   event.preventDefault(); // no context menu
 
 console.log(video.currentSrc);
@@ -209,9 +210,10 @@ video.play()
 
   let newResTrack;
 
-newResTrack="Auto";
+newResTrack="N/A";
 
-  restrack.textContent = `${newResTrack}`;
+  restrackauto.textContent = `${newResTrack}`;
+  restrackauto.style.display = 'none';
 }
 
 // Captions
