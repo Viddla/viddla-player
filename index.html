@@ -12,6 +12,7 @@
   <div class="video-container paused" data-volume-level="high">
     <div class="loader"></div> <img class="vidposter-img">
     <div class="watermark"><a href="#"><img src="assets/logo.png"></a></div>
+    <div class="watermark"><a href="#">share</a></div>
 	
 	<video class="vlplay" poster="assets/poster.avif">
 		<source src="assets/hatav1-720.mp4" type='video/mp4' label='720p' res='720' />
@@ -67,13 +68,24 @@
             <path fill="currentColor" d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h18v14zm-10-7h9v6h-9z"/>
           </svg>
         </button>
-        <div class="langtrack-container">
-        <button class="langtrack-btn">
+        <div class="langtrack-container dropdown">
+            <button class="langtrack-btn">
           EN
         </button>
-        <button class="restrack-btn  wide-btn">4K</button>
+    <div class="dropdown-content">
+      <a href="#">EN</a>
+      <a href="#">LT</a>
+      <a href="#">UA</a>
+    </div>
         
         </div>
+		
+	
+			  <div class="quality-switch dropdown">
+                    <button class="restrack-btn  wide-btn">4K</button>
+    <div class="dropdown-content" id="videosources"></div>
+	</div>
+	
         <button class="theater-btn">
           <svg class="tall" viewBox="0 0 24 24">
             <path fill="currentColor" d="M19 6H5c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 10H5V8h14v8z"/>
@@ -96,8 +108,8 @@
 
   </div>
   
-  <div><p>Video sources:</p>
-  <div id="videosources"></div>
+  <div><p>Lang sources:</p>
+  <div id="langsources"></div>
   </div>
 </body>
 </html>

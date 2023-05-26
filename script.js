@@ -165,7 +165,7 @@ for (let i = 0; i < sourceElements.length; i++) {
   const label = source.getAttribute('label');
   
   // Create a button element
-  const button = document.createElement('button');
+  const button = document.createElement('a');
   button.textContent = label;
   
   // Add a click event listener to change video resolution
@@ -217,6 +217,23 @@ newResTrack="Auto";
 // Captions
 const captions = video.textTracks[0]
 captions.mode = "hidden"
+
+/*
+if (video.textTracks.length === 0 || hasLoadingFailed()) {
+  captionsBtn.style.display = 'none';
+}
+
+function hasLoadingFailed() {
+  const tracks = video.querySelectorAll('track');
+  for (let i = 0; i < tracks.length; i++) {
+    const track = tracks[i];
+    if (track.src && track.readyState === 2) {
+      return true; // Loading of at least one track has failed
+    }
+  }
+  return false; // All tracks loaded successfully
+}
+}*/
 
 captionsBtn.addEventListener("click", toggleCaptions)
 
@@ -352,6 +369,7 @@ video.addEventListener('canplay', hideLoader);
 video.addEventListener('playing', hideLoader);
 video.addEventListener('loadeddata', hideLoader);
 video.addEventListener('loadedmetadata', hideLoader);
+video.addEventListener('emptied', hideLoader);
 
 try {
   video.addEventListener('loadeddata', () => {
