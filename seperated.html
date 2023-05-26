@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Video Player</title>
+  <style>
+    .vlplay {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <video class="vlplay" poster="assets/poster.avif">
+    <source src="assets/preview.mp4" type='video/mp4' label='144p' res='144' />
+	<audio src="assets/test.mp3" type='audio/mp3' srclang="en" />
+  </video>
+
+  <button onclick="playVideoAndAudio()">Play</button>
+  
+  <script>
+    var video = document.querySelector('.vlplay');
+    /*var audio = document.createElement('audio');
+    audio.src = 'assets/test.mp3';
+    audio.type = 'audio/mp3';
+    audio.preload = 'auto';
+    audio.controls = true;*/
+    //audio.style.display = 'none';
+
+    video.parentNode.insertBefore(audio, video.nextSibling);
+
+const sourceElements = video.querySelectorAll('audio');
+
+if (sourceElements.length <= 1) {
+  //restrack.style.display = 'none'; // there is nothing to change
+console.log("err");
+}
+
+  </script>
+  
+    <script>
+    function playVideoAndAudio() {
+      var video = document.querySelector('.vlplay');
+      var audio = document.querySelector('audio');
+      
+	  
+	  video.addEventListener('seeked', function() {
+    audio.currentTime = video.currentTime;
+	console.log(audio.currentTime);
+  });
+  
+      video.play();
+      audio.play();
+    }
+  </script>
+  
+</body>
+</html>
