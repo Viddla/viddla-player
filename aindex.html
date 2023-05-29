@@ -1,0 +1,116 @@
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vidstack/styles/base.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vidstack/styles/ui/buttons.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vidstack/styles/ui/buffering.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vidstack/styles/ui/tooltips.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vidstack/styles/ui/live.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vidstack/styles/ui/sliders.min.css" />
+
+    <link rel="stylesheet" href="style.css" />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vidstack/styles/defaults.min.css" />
+    <script type="module" src="https://cdn.jsdelivr.net/npm/vidstack/dist/cdn/prod.js"></script>
+
+<media-player class="video-container"
+  title="Agent 327: Operation Barbershop"
+  src="https://media-files.vidstack.io/hls/index.m3u8"
+  poster="https://media-files.vidstack.io/poster.png"
+  thumbnails="https://media-files.vidstack.io/thumbnails.vtt"
+>
+
+  <div class="media-controls-container" role="group" aria-label="Media Controls">
+<media-buffering-indicator></media-buffering-indicator>
+<media-poster class="vidposter-img" alt="Agent 327 blowing flames with a hair dryer."></media-poster>
+    <div class="watermark"><a href="#"><img src="assets/logo.png"></a></div>
+    <div class="watermark share-btn"><a class="share-btn" href="#">=]</a></div>
+
+<media-outlet class="vlplay"></media-outlet>
+    <div class="video-controls-container">
+	<div class="timeline-container">
+		        <media-time-slider class="timeline">
+    <media-slider-thumbnail class="preview-thumb" slot="preview"></media-slider-thumbnail>
+  </media-time-slider>
+		</div>
+
+
+      <!--<div class="timeline-container">
+        <div class="timeline">
+          <video class="preview-thumb">
+          <div class="thumb-indicator"></div>
+        </div>
+      </div>-->
+      <div class="controls">
+          <media-play-button class="play-pause-btn"></media-play-button>
+		  
+		  <div class="volume-container">
+          <button class="mute-btn">
+            <media-mute-button></media-mute-button>
+          </button>
+          <media-volume-slider class="volume-slider"></media-volume-slider>
+        </div>
+		
+		  
+<!-- aria-orientation="vertical" -->
+        <div class="duration-container">
+          <div class="current-time">  <media-time type="current"></media-time>
+  </div>
+          /
+          <div class="total-time"><media-time type="current" remainder></media-time></div>
+        </div>
+<media-captions></media-captions>
+
+  <media-menu>
+  <media-menu-button aria-label="Settings">
+    <media-icon type="settings" data-rotate></media-icon>
+  </media-menu-button>
+ <media-menu-items>
+    <media-radio-group value="720">
+      <media-radio value="1080">1080p</media-radio>
+      <media-radio value="720">720p</media-radio>
+      <media-radio value="480">480p</media-radio>
+    </media-radio-group>
+  </media-menu-items>
+
+  <media-menu-button aria-label="Chapters">
+    <media-icon type="chapters" />
+  </media-menu-button>
+  <media-chapters-menu-items />
+
+      <media-menu>
+      <media-audio-menu-button label="Audio"></media-audio-menu-button>
+      <media-audio-menu-items empty-label="Default"></media-audio-menu-items>
+    </media-menu>
+        <media-menu>
+      <media-captions-menu-button label="Captions"></media-captions-menu-button>
+      <media-captions-menu-items off-label="Off"></media-captions-menu-items>
+    </media-menu>    <media-menu>
+      <media-quality-menu-button label="Quality"></media-quality-menu-button>
+      <media-quality-menu-items auto-label="Auto"></media-quality-menu-items>
+    </media-menu>    <media-menu>
+      <media-playback-rate-menu-button label="Speed"></media-playback-rate-menu-button>
+      <media-playback-rate-menu-items normal-label="Normal"></media-playback-rate-menu-items>
+    </media-menu>
+
+</media-menu>
+
+        </div>
+      </div>
+
+    </div>
+	
+  </div>
+</media-player>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vidstacked</title>
+
+</head>
+<body>
+
+</body>
+</html>
