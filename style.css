@@ -1,5 +1,7 @@
 .volume-container {
-    max-width: 100px;
+    max-width: 195px;
+	  margin-left: -10px;
+
 }
 
 .volume-container > shadow-root:nth-child(1) {
@@ -15,8 +17,7 @@
   transform: scaleX(1);
 }
 
-
-
+.video-container{height: 562.5px;} /* VIDSTACK is being too jumpy, before poster loaded and after */
 
 /* themable */
 
@@ -171,6 +172,7 @@ video {
   transform-origin: left;
   transform: scaleX(0);
   transition: width 150ms ease-in-out, transform 150ms ease-in-out;
+  margin-left: 16px;
 }
 
 .volume-container:hover .volume-slider,
@@ -249,7 +251,7 @@ video {
   aspect-ratio: 16 / 9;
   top: -1rem;
   transform: translate(-50%, -100%);
-  left: calc(var(--slider-pointer-percent) * 100%);
+  /*left: calc(var(--slider-pointer-percent) * 100%);*/
   border-radius: .25rem;
 	border: 2px solid white;
 	width: unset; /* video tag */
@@ -289,6 +291,10 @@ video {
 .video-container.scrubbing .timeline,
 .timeline-container:hover .timeline {
   height: 100%;
+}
+
+:root {
+  --media-slider-track-fill-bg: #f81337; /* Replace #FF0000 with your desired color value */
 }
 
 /* new adds*/
