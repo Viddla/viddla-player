@@ -20,14 +20,13 @@
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vidstack/styles/defaults.min.css" />
     <script type="module" src="https://cdn.jsdelivr.net/npm/vidstack/dist/cdn/prod.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/vidstack/dist/cdn/chunks/provider-XNSGTVWE.js"></script>
 
 <media-player class="video-container"
-  title="Agent 327: Operation Barbershop"
-  src="https://media-files.vidstack.io/hls/index.m3u8"
-  poster="https://media-files.vidstack.io/poster.png"
-  thumbnails="https://media-files.vidstack.io/thumbnails.vtt"
+  load="custom"
+  
 >
-<media-poster class="vidposter-img" alt="Agent 327 blowing flames with a hair dryer."></media-poster>
+<media-poster class="vidposter-img" alt=""></media-poster>
     <div class="watermark"><a href="#"><img src="assets/logo.png"></a></div>
     <div class="watermark share-btn"><a class="share-btn" href="#">=]</a></div>
 <media-buffering-indicator></media-buffering-indicator>
@@ -114,6 +113,48 @@
         </div>
       </div>
 </media-player>
+
+<form class="testlink" id="load-hls">
+<div class="title">Test your video HLS/MP4/etc</div>
+<label>
+<i class="material-icons"> link </i>
+<input id="url-hls" type="url" placeholder="HLS (.m3u8) URL:" value="">
+</label>
+<button class="btn-load" type="submit">Play</button>
+</form>
+
+<form class="testlink" id="load-anyurl">
+<label>
+<i class="material-icons"> link </i>
+<input id="url-link" type="url" placeholder="MP4/etc URL:" value="">
+</label>
+<button class="btn-load" type="submit">Play</button>
+</form>
+
+<script>
+const player = document.querySelector('media-player');
+
+  	  var loadHLSUrl = document.getElementById('load-hls');
+  	  var loadAnyUrl = document.getElementById('load-anyurl');
+	  
+	  var urlhls = document.getElementById('url-hls');
+	  var urllink = document.getElementById('url-link');
+	  
+	  
+	  loadHLSUrl.addEventListener('submit', function(event) {
+		event.preventDefault();
+const player = document.querySelector('media-player'); player.src = [{ src: urlhls.value, type: 'application/x-mpegURL' }]; 
+player.startLoading();
+	  });
+	  
+	  	  loadAnyUrl.addEventListener('submit', function(event) {
+		event.preventDefault();
+const player = document.querySelector('media-player'); player.src = [{ src: urllink.value }]; 
+player.startLoading();
+	  });
+	  
+</script>
+
 
 </body>
 </html>
