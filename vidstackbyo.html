@@ -45,8 +45,14 @@
     ></media-slider-video>-->
 
 
-<div slot="preview"><div><media-slider-thumbnail class="preview-thumb"></media-slider-thumbnail>
-            <div class="absolute bottom-8 w-full text-center svelte-9qvbu8" part="chapter-title"></div></div>
+<div slot="preview"><div>
+<media-slider-thumbnail class="preview-thumb"></media-slider-thumbnail>
+<media-slider-video style="display:none" class="preview-thumb" src="" slot="preview"></media-slider-video>
+
+            <div class="absolute bottom-8 w-full text-center svelte-9qvbu8" part="chapter-title"></div>
+			
+			
+			</div>
           <media-slider-value class="rounded-sm mt-2" type="pointer" format="time"></media-slider-value></div>
 		  
   </media-time-slider>
@@ -132,6 +138,10 @@
 </form>
 
 <script>
+var thumbnailElement = document.querySelector('media-slider-thumbnail');
+thumbnailElement.style.display = 'none';
+
+
 const player = document.querySelector('media-player');
 
   	  var loadHLSUrl = document.getElementById('load-hls');
@@ -151,6 +161,12 @@ player.startLoading();
 		event.preventDefault();
 const player = document.querySelector('media-player'); player.src = [{ src: urllink.value }]; 
 player.startLoading();
+
+// bc not hls and likely limited
+var videoElement = document.querySelector('media-slider-video');
+videoElement.style.display = 'block';
+videoElement.setAttribute('src', urllink.value);
+
 	  });
 	  
 </script>
