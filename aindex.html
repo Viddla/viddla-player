@@ -21,12 +21,24 @@
     <div class="watermark share-btn"><a class="share-btn" href="#">=]</a></div>
 <media-buffering-indicator></media-buffering-indicator>
 
-<media-outlet class="vlplay"></media-outlet>
+<media-outlet class="vlplay">
+<track src="https://media-files.vidstack.io/chapters.vtt" kind="chapters" default />
+</media-outlet>
 
     <div class="video-controls-container" role="group">
 	<div class="timeline-container">
 		        <media-time-slider class="timeline">
-    <media-slider-thumbnail class="preview-thumb" slot="preview"></media-slider-thumbnail>
+    <!--<media-slider-thumbnail class="preview-thumb" slot="preview"></media-slider-thumbnail>-->
+	     <!--<media-slider-video class="preview-thumb"
+      src="https://media-files.vidstack.io/240p.mp4"
+      slot="preview"
+    ></media-slider-video>-->
+
+
+<div slot="preview"><div><media-slider-thumbnail class="rounded-sm"></media-slider-thumbnail>
+            <div class="absolute bottom-8 w-full text-center svelte-9qvbu8" part="chapter-title"></div></div>
+          <media-slider-value class="rounded-sm mt-2" type="pointer" format="time"></media-slider-value></div>
+		  
   </media-time-slider>
 		</div>
 
@@ -54,6 +66,7 @@
   </div>
           /
           <div class="total-time"><media-time type="current" remainder></media-time></div>
+		 
         </div>
 <media-captions></media-captions>
 
@@ -62,18 +75,6 @@
     <media-icon type="settings" data-rotate></media-icon>
   </media-menu-button>
  <media-menu-items>
-    <media-radio-group value="720">
-      <media-radio value="1080">1080p</media-radio>
-      <media-radio value="720">720p</media-radio>
-      <media-radio value="480">480p</media-radio>
-    </media-radio-group>
-  </media-menu-items>
-
-  <media-menu-button aria-label="Chapters">
-    <media-icon type="chapters" />
-  </media-menu-button>
-  <media-chapters-menu-items />
-
       <media-menu>
       <media-audio-menu-button label="Audio"></media-audio-menu-button>
       <media-audio-menu-items empty-label="Default"></media-audio-menu-items>
@@ -88,7 +89,15 @@
       <media-playback-rate-menu-button label="Speed"></media-playback-rate-menu-button>
       <media-playback-rate-menu-items normal-label="Normal"></media-playback-rate-menu-items>
     </media-menu>
+</media-menu-items>
 
+</media-menu>
+
+<media-menu>
+  <media-menu-button aria-label="Chapters">
+    <media-icon type="chapters" />
+  </media-menu-button>
+  <media-chapters-menu-items />
 </media-menu>
 
         </div>
