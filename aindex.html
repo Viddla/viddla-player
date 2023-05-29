@@ -16,15 +16,14 @@
   poster="https://media-files.vidstack.io/poster.png"
   thumbnails="https://media-files.vidstack.io/thumbnails.vtt"
 >
-
-  <div class="media-controls-container" role="group" aria-label="Media Controls">
-<media-buffering-indicator></media-buffering-indicator>
 <media-poster class="vidposter-img" alt="Agent 327 blowing flames with a hair dryer."></media-poster>
     <div class="watermark"><a href="#"><img src="assets/logo.png"></a></div>
     <div class="watermark share-btn"><a class="share-btn" href="#">=]</a></div>
+<media-buffering-indicator></media-buffering-indicator>
 
 <media-outlet class="vlplay"></media-outlet>
-    <div class="video-controls-container">
+
+    <div class="video-controls-container" role="group">
 	<div class="timeline-container">
 		        <media-time-slider class="timeline">
     <media-slider-thumbnail class="preview-thumb" slot="preview"></media-slider-thumbnail>
@@ -94,10 +93,6 @@
 
         </div>
       </div>
-
-    </div>
-	
-  </div>
 </media-player>
 
 

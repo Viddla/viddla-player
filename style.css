@@ -17,7 +17,7 @@
   transform: scaleX(1);
 }
 
-.video-container{height: 562.5px;} /* VIDSTACK is being too jumpy, before poster loaded and after */
+.vlplay{width: 100%;} /* VIDSTACK is being too jumpy, before poster loaded and after */
 
 /* themable */
 
