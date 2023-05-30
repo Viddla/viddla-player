@@ -151,7 +151,10 @@ function getCurrentSource() {
     }
   }
   return null; // No matching source found
-}
+} 
+/*document.addEventListener('DOMContentLoaded', function() {
+  getCurrentSource(); // no more 4K?
+});*/
 
 const sourceElements = video.querySelectorAll('source');
 
@@ -449,7 +452,7 @@ hls.on(Hls.Events.MANIFEST_LOADED, function() {
         currentQualityLevel = i; // Update the current quality level
         initializeHLS();
         hls.currentLevel = i; // Switch to the selected quality level
-        restrack.textContent = `${level.height}pi`;
+        restrack.textContent = `${level.height}p^`;
       }
     });
 
