@@ -398,3 +398,43 @@ function hideLoader() {
   loader.style.display = 'none';
   vidposterImg.style.display = 'none';
 }
+
+/* HLS */
+
+  if(Hls.isSupported()) {
+    var hls = new Hls();
+    hls.loadSource('https://media-files.vidstack.io/hls/index.m3u8');
+    hls.attachMedia(video);
+    hls.on(Hls.Events.MANIFEST_PARSED,function() {
+      video.play();
+  });
+ }
+ // hls.js is not supported on platforms that do not have Media Source Extensions (MSE) enabled.
+ // When the browser has built-in HLS support (check using `canPlayType`), we can provide an HLS manifest (i.e. .m3u8 URL) directly to the video element throught the `src` property.
+ // This is using the built-in support of the plain video element, without using hls.js.
+  else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+    video.src = 'https://media-files.vidstack.io/hls/index.m3u8';
+    video.addEventListener('canplay',function() {
+      video.play();
+    });
+  }
+  
+  // HLS.js event listener for when the manifest is loaded
+hls.on(Hls.Events.MANIFEST_LOADED, function() {
+  const levels = hls.levels; // Array of available quality levels
+
+  // Create buttons for each quality level
+  for (let i = 0; i < levels.length; i++) {
+    const level = levels[i];
+    const button = document.createElement('a');
+    button.textContent = level.height + 'p HLS';
+
+    // Add a click event listener to change video quality
+    button.addEventListener('click', function() {
+      hls.currentLevel = i; // Switch to the selected quality level
+    });
+
+    // Append the button to the video sources container
+    videoSourcesContainer.appendChild(button);
+  }
+});
