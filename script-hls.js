@@ -224,6 +224,9 @@ function toggleCaptions() {
   const isHidden = captions.mode === "hidden"
   captions.mode = isHidden ? "showing" : "hidden"
   videoContainer.classList.toggle("captions", isHidden)
+    if (hlsinit) {
+    hls.subtitleTrack = isHidden ? 0 : -1;
+  }
 }
 
 // Duration
@@ -387,11 +390,10 @@ let hlsinit = false; // Variable to track HLS.js initialization
 function initializeHLS() {
   const  previousTime = video.currentTime;
   const  previousPBR = video.playbackRate;
-  console.log(previousTime);
   
   if (hlsinit) {
     return; // HLS.js already initialized, no need to reinitialize
-  }
+  }   console.log(previousTime);
 	
   if (Hls.isSupported()) {
     hls = new Hls();
@@ -404,7 +406,6 @@ function initializeHLS() {
     video.src = 'https://media-files.vidstack.io/hls/index.m3u8';
 	hlsinit = true;
   }
-  
 
 console.log("[HLS] Playing " + " " + "DBG : "+video.currentTime+" <- curr time | duration -> "+video.duration);
   video.currentTime = previousTime;
@@ -414,8 +415,8 @@ console.log("[HLS] Playing " + " " + "DBG : "+video.currentTime+" <- curr time |
       video.play();
 
 }
-
 initializeHLS();
+toggleCaptions(); //TURN ON CAPTIONS bc subtitles get enabled by default and disabling via hls doesn't seem to work
 
 // HLS.js event listener for when the manifest is loaded
 hls.on(Hls.Events.MANIFEST_LOADED, function() {
