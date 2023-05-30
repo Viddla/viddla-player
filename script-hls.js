@@ -377,3 +377,93 @@ function hideLoader() {
   loader.style.display = 'none';
   vidposterImg.style.display = 'none';
 }
+
+/* HLS */
+let hls;
+let currentQualityLevel = -1; // Variable to track the current quality level
+
+function initializeHLS() {
+  if (Hls.isSupported()) {
+    hls = new Hls();
+    hls.attachMedia(video);
+    hls.on(Hls.Events.MEDIA_ATTACHED, function () {
+      hls.loadSource('https://media-files.vidstack.io/hls/index.m3u8');
+    });
+  } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+    video.src = 'https://media-files.vidstack.io/hls/index.m3u8';
+  }
+}
+
+initializeHLS();
+
+// HLS.js event listener for when the manifest is loaded
+hls.on(Hls.Events.MANIFEST_LOADED, function() {
+  const levels = hls.levels; // Array of available quality levels
+  restrackauto.style.display = 'block';
+
+  // Find the highest quality level based on resolution
+  let highestLevel = 0;
+  let maxResolution = 0;
+  for (let i = 0; i < levels.length; i++) {
+    const level = levels[i];
+    if (level.width * level.height > maxResolution) {
+      highestLevel = i;
+      maxResolution = level.width * level.height;
+    }
+  }
+
+  // Set the initial quality level to auto or highest available
+  hls.currentLevel = highestLevel;
+
+  // Create buttons for each quality level
+  for (let i = 0; i < levels.length; i++) {
+    const level = levels[i];
+    const button = document.createElement('a');
+    button.textContent = level.height + 'p HLS';
+
+    // Add a click event listener to change video quality
+    button.addEventListener('click', function() {
+      if (i !== currentQualityLevel) { // Check if the quality level has changed
+        currentQualityLevel = i; // Update the current quality level
+        initializeHLS();
+        hls.currentLevel = i; // Switch to the selected quality level
+        restrack.textContent = `${level.height}pi`;
+      }
+    });
+
+    // Append the button to the video sources container
+    videoSourcesContainer.appendChild(button);
+  }
+});
+
+restrackauto.addEventListener("click", changeVidResolutionAuto);
+function changeVidResolutionAuto(event) {
+  event.preventDefault(); // Prevent context menu
+
+  if (currentQualityLevel !== -1) { // Check if the quality level has changed
+    currentQualityLevel = -1; // Update the current quality level
+    initializeHLS();
+    hls.currentLevel = -1; // Set the current level to -1 for auto quality
+    restrack.textContent = `*HLS`;
+  }
+}
+
+// Event listener for source changes
+video.addEventListener('sourcechange', function () {
+  const source = video.currentSrc;
+
+  if (source.endsWith('.m3u8')) {
+    // Switched to HLS source, initialize HLS playback
+    if (currentQualityLevel !== -1) { // Check if the quality level has changed
+      initializeHLS();
+      hls.currentLevel = currentQualityLevel; // Restore the current quality level
+    }
+  } else {
+    // Switched to non-HLS source, detach and destroy HLS instance if exists
+    if (hls) {
+      hls.destroy();
+      hls = null;
+      currentQualityLevel = -1; // Reset the current quality level
+    }
+  }
+});
