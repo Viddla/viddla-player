@@ -380,23 +380,19 @@ function hideLoader() {
 
 /* HLS */
 
-  if(Hls.isSupported()) {
-    var hls = new Hls();
-    hls.loadSource('https://media-files.vidstack.io/hls/index.m3u8');
+  function initializeHLS() {
+  if (Hls.isSupported()) {
+    hls = new Hls();
     hls.attachMedia(video);
-    hls.on(Hls.Events.MANIFEST_PARSED,function() {
-      video.play();
-  });
- }
- // hls.js is not supported on platforms that do not have Media Source Extensions (MSE) enabled.
- // When the browser has built-in HLS support (check using `canPlayType`), we can provide an HLS manifest (i.e. .m3u8 URL) directly to the video element throught the `src` property.
- // This is using the built-in support of the plain video element, without using hls.js.
-  else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-    video.src = 'https://media-files.vidstack.io/hls/index.m3u8';
-    video.addEventListener('canplay',function() {
-      video.play();
+    hls.on(Hls.Events.MEDIA_ATTACHED, function () {
+      hls.loadSource('https://media-files.vidstack.io/hls/index.m3u8');
     });
+  } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+    video.src = 'https://media-files.vidstack.io/hls/index.m3u8';
   }
+}
+  
+ initializeHLS();
   
 // HLS.js event listener for when the manifest is loaded
 hls.on(Hls.Events.MANIFEST_LOADED, function() {
@@ -425,6 +421,7 @@ hls.on(Hls.Events.MANIFEST_LOADED, function() {
 
     // Add a click event listener to change video quality
     button.addEventListener('click', function() {
+	  initializeHLS();
       hls.currentLevel = i; // Switch to the selected quality level
 	  restrack.textContent = `${level.height}pi`;
     });
@@ -440,8 +437,23 @@ function changeVidResolutionAuto(event) {
 
   //restrackauto.textContent = `${newResTrack}`;
   //restrackauto.style.display = 'none';
-
+initializeHLS();
 hls.currentLevel = -1; // Set the current level to -1 for auto quality
-restrack.textContent = `Auto|HLS`;
-  
+restrack.textContent = `*HLS`;
 }
+
+// Event listener for source changes
+video.addEventListener('sourcechange', function () {
+  const source = video.currentSrc;
+
+  if (source.endsWith('.m3u8')) {
+    // Switched to HLS source, initialize HLS playback
+    initializeHLS();
+  } else {
+    // Switched to non-HLS source, detach and destroy HLS instance if exists
+    if (hls) {
+      hls.destroy();
+      hls = null;
+    }
+  }
+});
