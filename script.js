@@ -196,27 +196,6 @@ function newresSRC(nnlabel, nnsrc) {
   restrack.textContent = `${nnlabel}`;
 }
 
-restrackauto.addEventListener("click", changeVidResolutionAuto);
-function changeVidResolutionAuto(event) {
-  event.preventDefault(); // no context menu
-
-console.log(video.currentSrc);
-console.log(video.src); //sets src but starts playback from zero
-
-previousTime = 0;
-previousTime = video.currentTime;
-video.src="assets/preview.mp4";
-video.currentTime = previousTime;
-video.play()
-
-  let newResTrack;
-
-newResTrack="N/A";
-
-  restrackauto.textContent = `${newResTrack}`;
-  restrackauto.style.display = 'none';
-}
-
 // Captions
 const captions = video.textTracks[0]
 captions.mode = "hidden"
@@ -419,9 +398,24 @@ function hideLoader() {
     });
   }
   
-  // HLS.js event listener for when the manifest is loaded
+// HLS.js event listener for when the manifest is loaded
 hls.on(Hls.Events.MANIFEST_LOADED, function() {
   const levels = hls.levels; // Array of available quality levels
+  restrackauto.style.display = 'block';
+
+  // Find the highest quality level based on resolution
+  let highestLevel = 0;
+  let maxResolution = 0;
+  for (let i = 0; i < levels.length; i++) {
+    const level = levels[i];
+    if (level.width * level.height > maxResolution) {
+      highestLevel = i;
+      maxResolution = level.width * level.height;
+    }
+  }
+
+  // Set the initial quality level to auto or highest available
+  hls.currentLevel = highestLevel;
 
   // Create buttons for each quality level
   for (let i = 0; i < levels.length; i++) {
@@ -432,9 +426,22 @@ hls.on(Hls.Events.MANIFEST_LOADED, function() {
     // Add a click event listener to change video quality
     button.addEventListener('click', function() {
       hls.currentLevel = i; // Switch to the selected quality level
+	  restrack.textContent = `${level.height}pi`;
     });
 
     // Append the button to the video sources container
     videoSourcesContainer.appendChild(button);
   }
 });
+
+restrackauto.addEventListener("click", changeVidResolutionAuto);
+function changeVidResolutionAuto(event) {
+  event.preventDefault(); // no context menu
+
+  //restrackauto.textContent = `${newResTrack}`;
+  //restrackauto.style.display = 'none';
+
+hls.currentLevel = -1; // Set the current level to -1 for auto quality
+restrack.textContent = `Auto|HLS`;
+  
+}
