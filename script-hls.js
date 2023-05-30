@@ -185,7 +185,7 @@ function createClickListener(label, src) {
 
 function newresSRC(nnlabel, nnsrc) {
 	showLoader();
-  console.log("Playing " + nnlabel + " " + nnsrc + "DBG : "+video.currentTime+" <- curr time | duration -> "+video.duration);
+  console.log("[MP4] Playing " + nnlabel + " " + nnsrc + "DBG : "+video.currentTime+" <- curr time | duration -> "+video.duration);
   const  previousTime = video.currentTime;
   const  previousPBR = video.playbackRate;
   console.log(previousTime);
@@ -385,7 +385,10 @@ let currentQualityLevel = -1; // Variable to track the current quality level
 let hlsinit = false; // Variable to track HLS.js initialization
 
 function initializeHLS() {
-	
+  const  previousTime = video.currentTime;
+  const  previousPBR = video.playbackRate;
+  console.log(previousTime);
+  
   if (hlsinit) {
     return; // HLS.js already initialized, no need to reinitialize
   }
@@ -402,9 +405,14 @@ function initializeHLS() {
 	hlsinit = true;
   }
   
-    video.addEventListener('canplay',function() {
+
+console.log("[HLS] Playing " + " " + "DBG : "+video.currentTime+" <- curr time | duration -> "+video.duration);
+  video.currentTime = previousTime;
+  video.playbackRate = previousPBR;
+  console.log(video.currentTime);
+  
       video.play();
-    });
+
 }
 
 initializeHLS();
@@ -462,6 +470,7 @@ function changeVidResolutionAuto(event) {
 }
 
 // Event listener for source changes
+/*
 video.addEventListener('sourcechange', function () {
   const source = video.currentSrc;
 
@@ -479,4 +488,4 @@ video.addEventListener('sourcechange', function () {
       currentQualityLevel = -1; // Reset the current quality level
     }
   }
-});
+});*/
