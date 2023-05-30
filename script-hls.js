@@ -179,6 +179,7 @@ for (let i = 0; i < sourceElements.length; i++) {
 function createClickListener(label, src) {
   return function() {
     newresSRC(label, src);
+	hlsinit = false;
   };
 }
 
@@ -381,17 +382,29 @@ function hideLoader() {
 /* HLS */
 let hls;
 let currentQualityLevel = -1; // Variable to track the current quality level
+let hlsinit = false; // Variable to track HLS.js initialization
 
 function initializeHLS() {
+	
+  if (hlsinit) {
+    return; // HLS.js already initialized, no need to reinitialize
+  }
+	
   if (Hls.isSupported()) {
     hls = new Hls();
     hls.attachMedia(video);
     hls.on(Hls.Events.MEDIA_ATTACHED, function () {
       hls.loadSource('https://media-files.vidstack.io/hls/index.m3u8');
+	  hlsinit = true;
     });
   } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
     video.src = 'https://media-files.vidstack.io/hls/index.m3u8';
+	hlsinit = true;
   }
+  
+    video.addEventListener('canplay',function() {
+      video.play();
+    });
 }
 
 initializeHLS();
