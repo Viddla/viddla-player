@@ -33,7 +33,7 @@
 <media-buffering-indicator></media-buffering-indicator>
 
 <media-outlet class="vlplay">
- <!--<track src="https://media-files.vidstack.io/chapters.vtt" kind="chapters" default />-->
+<track src="https://media-files.vidstack.io/chapters.vtt" kind="chapters" default />
 </media-outlet>
 
     <div class="video-controls-container" role="group">
@@ -47,13 +47,8 @@
 
 
 <div slot="preview"><div>
-<media-slider-thumbnail class="preview-thumb"></media-slider-thumbnail>
-<media-slider-video style="display:none" class="preview-thumb" src="" slot="preview"></media-slider-video>
-
-            <div part="chapter-title"></div>
-			
-			
-			</div>
+<media-slider-thumbnail class="rounded-sm"></media-slider-thumbnail>
+            <div part="chapter-title"></div></div>
           <media-slider-value class="rounded-sm mt-2" type="pointer" format="time"></media-slider-value></div>
 		  
   </media-time-slider>
@@ -127,12 +122,13 @@
 
 </media-menu>
 
-<!--<media-menu>
+<media-menu>
   <media-menu-button aria-label="Chapters">
     <media-icon type="chapters" />
   </media-menu-button>
   <media-chapters-menu-items />
-</media-menu>-->
+</media-menu>
+<media-fullscreen-button></media-fullscreen-button>
 
         </div>
       </div>
