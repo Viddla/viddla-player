@@ -46,8 +46,8 @@
 
 
 <div slot="preview"><div>
-<media-slider-thumbnail class="preview-thumb"></media-slider-thumbnail>
-<media-slider-video style="display:none" class="preview-thumb" src="" slot="preview"></media-slider-video>
+<media-slider-thumbnail ></media-slider-thumbnail>
+<media-slider-video class="preview-thumb" style="display:none" src="" slot="preview"></media-slider-video>
 
             <div part="chapter-title"></div>
 			
@@ -191,3 +191,10 @@ videoElement.setAttribute('src', urllink.value);
 
 </body>
 </html>
+
+
+<style>:where(media-player [data-media-slider] [slot="preview"]), :where(media-player [data-media-slider] [slot="preview"]){
+	contain: unset; /* fix vidstack sliders.css breaking video thumb preview, was layout paint style */}
+	:where(media-player [data-media-slider] [slot="preview"]){
+	margin-bottom: 14px; /* it centers timeline, needs to be above timeline scrubber */
+}</style>
