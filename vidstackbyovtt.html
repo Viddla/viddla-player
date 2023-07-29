@@ -201,9 +201,13 @@ videoElement.setAttribute('src', urllink.value);
 	margin-bottom: 14px; /* it centers timeline, needs to be above timeline scrubber */
 }</style>
 
-<textarea id="w3review" name="w3review">
+<textarea id="w3review" name="w3review" oninput="runChaptervtt(event)">
 00:50 a thing
 01:20 another thing
+</textarea>
+<br>
+<textarea id="w3prereview" name="w3prereview">
+  in use window
 </textarea>
 <button class="btn-load" onclick="runChaptervtt()">chapter-fy!</button>
 <script>
@@ -341,11 +345,15 @@ const mediaPlayer = document.querySelector('media-player');
   const videoDescription = document.getElementById('w3review').value;
   const videoDuration = document.querySelector('video').duration;// Some code to get the video duration, e.g., videoElement.duration;
   console.log("Vid Duration "+videoDuration);
+
+  mediaPlayer.textTracks.clear();
+
   if (videoDescription) {
     const vtt = generateVtt(videoDescription, videoDuration);
 
     if (vtt.includes('-->')) { // check for a cue
       // Code to add the WebVTT track
+      mediaPlayer.textTracks.clear();
       mediaPlayer.textTracks.add({
         type: 'vtt',
         kind: 'chapters',
@@ -354,6 +362,8 @@ const mediaPlayer = document.querySelector('media-player');
       });
     }
     console.log(vtt);
+    document.getElementById('w3prereview').value = vtt;
+
   }
 }
 </script>
