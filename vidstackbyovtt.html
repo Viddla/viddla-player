@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vidstacked</title>
+
+</head>
+<body>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vidstack/styles/base.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vidstack/styles/ui/buttons.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vidstack/styles/ui/buffering.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vidstack/styles/ui/tooltips.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vidstack/styles/ui/live.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vidstack/styles/ui/sliders.min.css" />
+
+    <link rel="stylesheet" href="style.css" />
+
+    <!--<script type="module" src="assets/chaptergen.js"></script>-->
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vidstack/styles/defaults.min.css" />
+    <script type="module" src="https://cdn.jsdelivr.net/npm/vidstack/dist/cdn/prod.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/vidstack/dist/cdn/chunks/provider-XNSGTVWE.js"></script>
+
+<media-player class="video-container"
+  load="custom"
+  
+>
+<media-poster class="vidposter-img" alt=""></media-poster>
+    <div class="watermark"><a href="#"><img src="assets/logo.png"></a></div>
+    <div class="watermark share-btn"><a class="share-btn" href="#">=]</a></div>
+<media-buffering-indicator></media-buffering-indicator>
+
+<media-outlet class="vlplay">
+ <!--<track src="https://media-files.vidstack.io/chapters.vtt" kind="chapters" default />-->
+</media-outlet>
+
+    <div class="video-controls-container" role="group">
+	<div class="timeline-container">
+		        <media-time-slider class="timeline">
+    <!--<media-slider-thumbnail class="preview-thumb" slot="preview"></media-slider-thumbnail>-->
+	     <!--<media-slider-video class="preview-thumb"
+      src="https://media-files.vidstack.io/240p.mp4"
+      slot="preview"
+    ></media-slider-video>-->
+
+
+<div slot="preview"><div>
+<media-slider-thumbnail ></media-slider-thumbnail>
+<media-slider-video class="preview-thumb" style="display:none" src="" slot="preview"></media-slider-video>
+
+            <div part="chapter-title"></div>
+			
+			
+			</div>
+          <media-slider-value class="rounded-sm mt-2" type="pointer" format="time"></media-slider-value></div>
+		  
+  </media-time-slider>
+		</div>
+
+
+      <!--<div class="timeline-container">
+        <div class="timeline">
+          <video class="preview-thumb">
+          <div class="thumb-indicator"></div>
+        </div>
+      </div>-->
+      <div class="controls">
+          <media-play-button class="play-pause-btn">
+		            <svg slot="play" class="play-icon" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M8,5.14V19.14L19,12.14L8,5.14Z" />
+          </svg>
+          <svg slot="pause" class="pause-icon" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M14,19H18V5H14M6,19H10V5H6V19Z" />
+          </svg>
+		  </media-play-button>
+		  
+		  <div class="volume-container">
+          <button style="height:47px;" class="mute-btn">
+            <media-mute-button>
+			            <svg slot="volume-high" class="volume-high-icon" viewBox="0 0 24 24">
+              <path fill="currentColor" d="M14,3.23V5.29C16.89,6.15 19,8.83 19,12C19,15.17 16.89,17.84 14,18.7V20.77C18,19.86 21,16.28 21,12C21,7.72 18,4.14 14,3.23M16.5,12C16.5,10.23 15.5,8.71 14,7.97V16C15.5,15.29 16.5,13.76 16.5,12M3,9V15H7L12,20V4L7,9H3Z" />
+            </svg>
+            <svg slot="volume-low" class="volume-low-icon" viewBox="0 0 24 24">
+              <path fill="currentColor" d="M5,9V15H9L14,20V4L9,9M18.5,12C18.5,10.23 17.5,8.71 16,7.97V16C17.5,15.29 18.5,13.76 18.5,12Z" />
+            </svg>
+            <svg slot="volume-muted" class="volume-muted-icon" viewBox="0 0 24 24">
+              <path fill="currentColor" d="M12,4L9.91,6.09L12,8.18M4.27,3L3,4.27L7.73,9H3V15H7L12,20V13.27L16.25,17.53C15.58,18.04 14.83,18.46 14,18.7V20.77C15.38,20.45 16.63,19.82 17.68,18.96L19.73,21L21,19.73L12,10.73M19,12C19,12.94 18.8,13.82 18.46,14.64L19.97,16.15C20.62,14.91 21,13.5 21,12C21,7.72 18,4.14 14,3.23V5.29C16.89,6.15 19,8.83 19,12M16.5,12C16.5,10.23 15.5,8.71 14,7.97V10.18L16.45,12.63C16.5,12.43 16.5,12.21 16.5,12Z" />
+            </svg>
+			</media-mute-button>
+          </button>
+          <media-volume-slider class="volume-slider"></media-volume-slider>
+        </div>
+		
+		  
+<!-- aria-orientation="vertical" -->
+        <div class="duration-container">
+          <div class="current-time">  <media-time type="current"></media-time>
+  </div>
+          /
+          <div class="total-time"><media-time type="duration"></media-time> <small>[<media-time style="font-size: 10px;" type="current" remainder></media-time>]</small></div>
+		 
+        </div>
+<media-captions></media-captions>
+
+  <media-menu>
+  <media-menu-button aria-label="Settings">
+    <media-icon type="settings" data-rotate></media-icon>
+  </media-menu-button>
+ <media-menu-items>
+      <media-menu>
+      <media-audio-menu-button label="Audio"></media-audio-menu-button>
+      <media-audio-menu-items empty-label="Default"></media-audio-menu-items>
+    </media-menu>
+        <media-menu>
+      <media-captions-menu-button label="Captions"></media-captions-menu-button>
+      <media-captions-menu-items off-label="Off"></media-captions-menu-items>
+    </media-menu>    <media-menu>
+      <media-quality-menu-button label="Quality"></media-quality-menu-button>
+      <media-quality-menu-items auto-label="Auto"></media-quality-menu-items>
+    </media-menu>    <media-menu>
+      <media-playback-rate-menu-button label="Speed"></media-playback-rate-menu-button>
+      <media-playback-rate-menu-items normal-label="Normal"></media-playback-rate-menu-items>
+    </media-menu>
+</media-menu-items>
+
+</media-menu>
+<!--<media-menu>
+  <media-menu-button aria-label="Chapters">
+    <media-icon type="chapters" />
+  </media-menu-button>
+  <media-chapters-menu-items />
+</media-menu>-->
+<media-fullscreen-button></media-fullscreen-button>
+
+        </div>
+      </div>
+</media-player>
+
+<form class="testlink" id="load-hls">
+<div class="title">Test your video HLS/MP4/etc</div>
+<label>
+<i class="material-icons"> link </i>
+<input id="url-hls" type="url" placeholder="HLS (.m3u8) URL:" value="https://media-files.vidstack.io/hls/index.m3u8">
+</label>
+<button class="btn-load" type="submit">Play</button>
+</form>
+
+<form class="testlink" id="load-anyurl">
+<label>
+<i class="material-icons"> link </i>
+<input id="url-link" type="url" placeholder="MP4/etc URL:" value="">
+</label>
+<button class="btn-load" type="submit">Play</button>
+</form>
+
+<script>
+var thumbnailElement = document.querySelector('media-slider-thumbnail');
+thumbnailElement.style.display = 'none';
+
+
+const player = document.querySelector('media-player');
+
+  	  var loadHLSUrl = document.getElementById('load-hls');
+  	  var loadAnyUrl = document.getElementById('load-anyurl');
+	  
+	  var urlhls = document.getElementById('url-hls');
+	  var urllink = document.getElementById('url-link');
+	  
+	  
+	  loadHLSUrl.addEventListener('submit', function(event) {
+		event.preventDefault();
+const player = document.querySelector('media-player'); player.src = [{ src: urlhls.value, type: 'application/x-mpegURL' }]; 
+player.startLoading();
+	  });
+	  
+	  	  loadAnyUrl.addEventListener('submit', function(event) {
+		event.preventDefault();
+const player = document.querySelector('media-player'); player.src = [{ src: urllink.value }]; 
+player.startLoading();
+
+// bc not hls and likely limited
+var videoElement = document.querySelector('media-slider-video');
+videoElement.style.display = 'block';
+videoElement.setAttribute('src', urllink.value);
+
+	  });
+	  
+</script>
+
+
+</body>
+</html>
+
+
+<style>:where(media-player [data-media-slider] [slot="preview"]), :where(media-player [data-media-slider] [slot="preview"]){
+	contain: unset; /* fix vidstack sliders.css breaking video thumb preview, was layout paint style */}
+	:where(media-player [data-media-slider] [slot="preview"]){
+	margin-bottom: 14px; /* it centers timeline, needs to be above timeline scrubber */
+}</style>
+
+<textarea id="w3review" name="w3review">
+00:50 a thing
+01:20 another thing
+</textarea>
+<button class="btn-load" onclick="runChaptervtt()">chapter-fy!</button>
+<script>
+  // Function to run the chaptervtt function
+function runChaptervtt() {
+
+//import { writeCues } from "./writer.js";
+//import { parseText } from "./parser.js";
+//export * from './parser.js';
+//export * from './writer.js';
+/**
+ * Generates a WebVTT file from a video description.
+ *
+ * @param description the text to parse chapters from
+ * @param duration total duration of the video in seconds
+ * @returns {string} WebVTT file of chapters
+ */
+ function generateVtt(description, duration) {
+    const result = parseText(description)
+        .filter(t => t.seconds <= duration) // remove chapters defined after the video's over
+        .sort((a, b) => a.seconds - b.seconds); // sort chapters lowest to highest
+    const cues = writeCues(result, duration);
+    // define the WebVTT header and add the chapter cues
+    const vtt = `WEBVTT - from chapter-vtt\n\n${cues}`;
+    return vtt;
+}
+
+/**
+ * Parses a timestamp and returns its value in seconds
+ *
+ * @param timestamp
+ * @returns {number} value in seconds, or null
+ */
+function parseTimestamp(timestamp) {
+    // we'll split the string based on the colon that separates hours, minutes, and seconds
+    const split = timestamp.split(':');
+    // fail silently
+    if (split.length < 2 || split.length > 3) {
+        console.warn(`Unexpected timestamp format at ${timestamp}`);
+        return null;
+    }
+    let seconds = 0;
+    let m = 1;
+    while (split.length > 0) {
+        const pop = split.pop();
+        if (!pop) {
+            continue;
+        }
+        seconds += m * parseInt(pop, 10);
+        m *= 60;
+    }
+    return seconds;
+}
+/**
+ * Parses text (video description) into Chapters.
+ *
+ * @see Chapter
+ * @param description the text to parse chapters from
+ * @returns {Chapter[]} array of Chapter (name, timestamp, seconds)
+ */
+function parseText(description) {
+    // the format we're looking for is
+    // 0:13 Chapter Name
+    const lines = description.split('\n');
+    const timestamps = [];
+    for (const line of lines) {
+        const split = line.split(' ');
+        // we need at least 2 space-separated items (the timestamp, and the name)
+        if (split.length < 2) {
+            continue;
+        }
+        const timestamp = split[0];
+        if (!timestamp.includes(':')) {
+            continue;
+        }
+        const seconds = parseTimestamp(timestamp);
+        if (seconds == null) {
+            continue;
+        }
+        // remove the timestamp from the space split
+        split.shift();
+        const name = split.join(' ');
+        timestamps.push({ name, timestamp, seconds });
+    }
+    return timestamps;
+}
+/**
+ * Returns a WebVTT friendly timestamp.
+ *
+ * @param timestamp
+ * @returns {string} WebVTT friendly timestamp
+ */
+function handleVttTimestamp(timestamp) {
+    const split = timestamp.split(':');
+    let reconstructed = '';
+    let index = 0;
+    for (let part of split) {
+        index++;
+        // add a 0 before the number
+        part = part.length == 1 ? `0${part}` : part;
+        reconstructed += `${part}${index == split.length ? '' : ':'}`;
+    }
+    if (split.length == 3) {
+        return reconstructed;
+    }
+    return `00:${reconstructed}`;
+}
+/**
+ * Writes the WebVTT cues.
+ *
+ * @param timestamps array of Chapters @see parseText
+ * @param duration total duration of the video in seconds
+ * @returns {string} chaptuer cues in WebVTT
+ */
+function writeCues(timestamps, duration) {
+    // converts the duration into a timestamp with milliseconds
+    // i.e. 00:01:42.41
+    const endTimestamp = new Date(duration * 1000).toISOString().slice(11, 22);
+    let vtt = '';
+    let index = 0;
+    for (const timestamp of timestamps) {
+        index++;
+        if (index == 1 && timestamp.seconds !== 0) {
+            console.warn('First chapter definition began before 0. Resetting');
+            timestamp.timestamp = '0:00';
+            timestamp.seconds = 0;
+        }
+        const end = index == timestamps.length ? endTimestamp : handleVttTimestamp(timestamps[index].timestamp);
+        vtt += `${handleVttTimestamp(timestamp.timestamp)} --> ${end}\n${timestamp.name}\n\n`;
+    }
+    return vtt;
+}
+
+const mediaPlayer = document.querySelector('media-player');
+  const videoDescription = document.getElementById('w3review').value;
+  const videoDuration = document.querySelector('video').duration;// Some code to get the video duration, e.g., videoElement.duration;
+  console.log("Vid Duration "+videoDuration);
+  if (videoDescription) {
+    const vtt = generateVtt(videoDescription, videoDuration);
+
+    if (vtt.includes('-->')) { // check for a cue
+      // Code to add the WebVTT track
+      mediaPlayer.textTracks.add({
+        type: 'vtt',
+        kind: 'chapters',
+        default: true,
+        content: vtt
+      });
+    }
+    console.log(vtt);
+  }
+}
+</script>

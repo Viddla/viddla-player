@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vidstacked</title>
+
+</head>
+<body>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vidstack/styles/defaults.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vidstack/styles/community-skin/video.min.css" />
+    <script type="module" src="https://cdn.jsdelivr.net/npm/vidstack/dist/cdn/prod.js"></script>
+
+    <media-player
+    title="Sprite Fight"
+    src="https://stream.mux.com/VZtzUzGRv02OhRnZCxcNg49OilvolTqdnFLEqBsTwaxU.m3u8"
+    poster="https://image.mux.com/VZtzUzGRv02OhRnZCxcNg49OilvolTqdnFLEqBsTwaxU/thumbnail.webp?time=268&width=980"
+    thumbnails="https://media-files.vidstack.io/sprite-fight/thumbnails.vtt"
+    aspect-ratio="16/9"
+    crossorigin
+  >
+    <media-outlet>
+      <media-poster
+        alt="Girl walks into sprite gnomes around her friend on a campfire in danger!"
+      ></media-poster>
+     <track
+        src="https://media-files.vidstack.io/sprite-fight/subs/english.vtt"
+        label="English"
+        srclang="en-US"
+        kind="subtitles"
+        default
+      />
+      <track
+        src="https://media-files.vidstack.io/sprite-fight/chapters.vtt"
+        srclang="en-US"
+        kind="chapters"
+        default
+      />
+    </media-outlet>
+    <div part="media-ui">
+        <div part="gestures">
+            <media-gesture event="pointerup" action="toggle:paused"></media-gesture>
+            <media-gesture event="pointerup" action="toggle:user-idle"></media-gesture>
+            <media-gesture event="dblpointerup" action="toggle:fullscreen"></media-gesture>
+            <media-gesture event="dblpointerup" action="seek:-10"></media-gesture>
+            <media-gesture event="dblpointerup" action="seek:10"></media-gesture>
+        </div>
+        <media-captions>
+        </media-captions>
+        <media-buffering-indicator>
+        </media-buffering-indicator>
+        <div part="scrim"></div>
+        <div part="controls">
+            <div part="controls-group">
+                <div part="controls-spacer"></div>
+                <media-menu part="chapters-menu">
+                    <media-menu-button></media-menu-button>
+                    <media-chapters-menu-items>
+                    </media-chapters-menu-items>
+                </media-menu>
+                <media-menu>
+                    <media-menu-button></media-menu-button>
+                    <media-menu-items>
+                        <media-menu>
+                            <media-audio-menu-button>
+                            </media-audio-menu-button>
+                            <media-audio-menu-items>
+                            </media-audio-menu-items>
+                        </media-menu>
+                        <media-menu>
+                            <media-playback-rate-menu-button>
+                            </media-playback-rate-menu-button>
+                            <media-playback-rate-menu-items>
+                            </media-playback-rate-menu-items>
+                        </media-menu>
+                        <media-menu>
+                            <media-quality-menu-button>
+                            </media-quality-menu-button>
+                            <media-quality-menu-items>
+                            </media-quality-menu-items>
+                        </media-menu>
+                        <media-menu>
+                            <media-captions-menu-button>
+                            </media-captions-menu-button>
+                            <media-captions-menu-items>
+                            </media-captions-menu-items>
+                        </media-menu>
+                    </media-menu-items>
+                </media-menu>
+            </div>
+            <div part="controls-group"></div>
+            <div part="controls-group">
+                <media-time-slider>
+                    <div slot="preview">
+                        <media-slider-thumbnail></media-slider-thumbnail>
+                        <div part="chapter-title"></div>
+                        <media-slider-value>
+                        </media-slider-value>
+                    </div>
+                </media-time-slider>
+            </div>
+            <div part="controls-group">
+                <media-play-button>
+                </media-play-button>
+                <media-mute-button>
+                </media-mute-button>
+                <media-volume-slider>
+                    <media-slider-value
+                        type="pointer"
+                        format="percent"
+                        slot="preview">
+                    </media-slider-value>
+                </media-volume-slider>
+                <div part="time-group">
+                    <media-time type="current">
+                    </media-time>
+                    <div part="time-divider">/</div>
+                    <media-time type="duration">
+                    </media-time>
+                </div>
+                <span part="main-title"></span>
+                <media-caption-button>
+                </media-caption-button>
+                <media-pip-button default-appearance="true" mk-d="" tabindex="0" role="button" aria-pressed="false" data-media-button="true" aria-hidden="true" aria-describedby="media-tooltip-6">
+                </media-pip-button>
+                <media-fullscreen-button>
+                    <media-tooltip></media-tooltip>
+                </media-fullscreen-button>
+            </div>
+        </div>
+    </div>    
+  </media-player>
+  
+
+</body>
+</html>
